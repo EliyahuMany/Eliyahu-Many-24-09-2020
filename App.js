@@ -17,12 +17,7 @@ const App = () => {
 
   const persistedReducer = persistReducer(persistConfig, reducers);
 
-  const store = createStore(
-    persistedReducer,
-    // DEV only! - The next line gives Redux DevTool the ability to expose all the store data.
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
-  );
+  const store = createStore(persistedReducer);
 
   const persistor = persistStore(store);
 

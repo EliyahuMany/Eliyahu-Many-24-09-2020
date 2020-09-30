@@ -7,7 +7,7 @@ export const autoComplete = async (text) => {
   });
 
   return await fetch(
-    `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?${params}`,
+    `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?${params}`,
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -21,7 +21,7 @@ export const currentConditions = async (key) => {
   const params = new URLSearchParams({apikey: config.apikey, details: true});
 
   return await fetch(
-    `http://dataservice.accuweather.com/currentconditions/v1/${key}?${params}`,
+    `https://dataservice.accuweather.com/currentconditions/v1/${key}?${params}`,
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -39,7 +39,7 @@ export const geoSearch = async (geo) => {
   });
 
   return await fetch(
-    `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?${params}`,
+    `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?${params}`,
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -57,7 +57,7 @@ export const fiveDaysForecasts = async (key, metric) => {
   });
 
   return await fetch(
-    `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?${params}`,
+    `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?${params}`,
   ).then((res) => {
     if (res.ok) {
       return res.json();
