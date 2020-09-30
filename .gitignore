@@ -59,4 +59,4 @@ buck-out/
 /ios/Pods/
 
 # config file
-/src/config
+/src/config.json
