@@ -35,18 +35,20 @@ const Home = (props) => {
     }
   }, [props.route.params]);
 
-  const endEditingHandler = () => {
-    autoComplete(text).then((res) => {
-      if (res && res.length) {
-        setSuggestions(res);
-      } else if (res.status) {
-        setError(res);
-        setVisable(true);
-      }
-    });
-  };
+  useEffect(() => {
+    if (text && text !== '') {
+      autoComplete(text).then((res) => {
+        if (res && res.length) {
+          setSuggestions(res);
+        } else if (res.status) {
+          setError(res);
+          setVisable(true);
+        }
+      });
+    }
+  }, [text]);
 
-  const locationHandler = (suggestion) => {
+  const setLocationHandler = (suggestion) => {
     setLocation(suggestion);
     setText('');
     setSuggestions([]);
@@ -81,7 +83,6 @@ const Home = (props) => {
         searchIcon={true}
         round={true}
         onClear={() => setSuggestions([])}
-        onEndEditing={endEditingHandler}
         containerStyle={{
           borderBottomWidth: 0,
           borderTopWidth: 0,
@@ -93,7 +94,7 @@ const Home = (props) => {
         onChangeText={changeTextHandler}
       />
       {suggestions && suggestions.length ? (
-        <Suggestions suggestions={suggestions} onSelect={locationHandler} />
+        <Suggestions suggestions={suggestions} onSelect={setLocationHandler} />
       ) : location ? (
         <WeatherDisplay location={location} />
       ) : (
